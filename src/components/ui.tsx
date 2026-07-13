@@ -95,6 +95,7 @@ export function Input({
   onChange,
   className = "",
   error,
+  rightIcon,
 }: {
   label?: string;
   type?: string;
@@ -106,6 +107,7 @@ export function Input({
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   error?: string;
+  rightIcon?: React.ReactNode;
 }) {
   return (
     <div className={className}>
@@ -115,18 +117,25 @@ export function Input({
           {required && <span className="text-red-500 ml-0.5">*</span>}
         </label>
       )}
-      <input
-        name={name}
-        type={type}
-        required={required}
-        value={value}
-        defaultValue={defaultValue}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={`block w-full rounded-lg border px-3 py-2.5 text-sm shadow-sm transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${
-          error ? "border-red-400 bg-red-50 dark:bg-red-900/20" : "border-[var(--input-border)] bg-[var(--input-bg)] text-[var(--foreground)]"
-        }`}
-      />
+      <div className="relative">
+        <input
+          name={name}
+          type={type}
+          required={required}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          placeholder={placeholder}
+          className={`block w-full rounded-lg border px-3 py-2.5 text-sm shadow-sm transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${
+            error ? "border-red-400 bg-red-50 dark:bg-red-900/20" : "border-[var(--input-border)] bg-[var(--input-bg)] text-[var(--foreground)]"
+          } ${rightIcon ? "pr-10" : ""}`}
+        />
+        {rightIcon && (
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+            {rightIcon}
+          </div>
+        )}
+      </div>
       {error && <p className="mt-1 text-xs text-red-500 animate-fade-in">{error}</p>}
     </div>
   );

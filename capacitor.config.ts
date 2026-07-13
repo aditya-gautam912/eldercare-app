@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'CareCircle',
   webDir: 'out',
   server: {
-    url: 'https://eldercare-app-dusky.vercel.app',
+    url: 'https://eldercare-app-prod.vercel.app',
   },
 };
 
